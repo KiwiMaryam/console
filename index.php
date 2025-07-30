@@ -1,18 +1,20 @@
 <?php
 
+echo ("Введите два числа через пробел: \n");
+
 $input = trim(fgets(STDIN));
 
 $numbers = explode(' ', $input);
 if (count($numbers) !== 2) {
-    fwrite(STDERR, "Введите, пожалуйста, два числа.\n");
+    fwrite(STDERR, "Введите, пожалуйста, два числа через пробел.\n");
     exit(1);
 }
 
 $firstNumber = $numbers[0];
 $secondNumber = $numbers[1];
 
-if (!filter_var($firstNumber, FILTER_VALIDATE_INT) || !filter_var($secondNumber, FILTER_VALIDATE_INT)) {
-    fwrite(STDERR, "Введите, пожалуйста, число.\n");
+if (filter_var($firstNumber, FILTER_VALIDATE_INT) === false || filter_var($secondNumber, FILTER_VALIDATE_INT) === false) {
+    fwrite(STDERR, "Введите, пожалуйста, целые числа.\n");
     exit(1);
 }
 
@@ -25,5 +27,5 @@ if ($secondNumber === 0) {
 }
 
 $result = $firstNumber / $secondNumber;
-echo $result . "\n";
+echo ("Ответ: $result. \n");
 ?>
